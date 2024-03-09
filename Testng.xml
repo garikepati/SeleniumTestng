@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Practice Suite">
+    <listeners>
+        <listener class-name="org.utils.Listners"/>
+    </listeners>
+    <test name="Login TestCase">
+        <classes>
+            <class name="org.Testcases.TestcaseLogin"/>
+        </classes>
+    </test>
+</suite>
