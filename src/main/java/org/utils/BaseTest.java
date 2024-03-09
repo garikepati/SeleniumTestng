@@ -1,6 +1,5 @@
 package org.utils;
-
-
+import org.Pages.LoginPage;
 import org.openqa.selenium.Beta;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
@@ -16,12 +15,18 @@ import org.openqa.selenium.manager.SeleniumManagerOutput;
 import org.openqa.selenium.remote.service.DriverFinder;
 import org.testng.annotations.*;
 
+
 public class BaseTest extends ReadPropertyfile {
 
     public static WebDriver driver=null;
    public String browserName =propertyFile("browser");
    public String url = propertyFile("url");
 protected ReadExcel Excel = new ReadExcel();
+ SeleniumUtils utils ;
+ LoginPage loginPage;
+
+
+
 
     @BeforeMethod(alwaysRun = true)
     public void InitializeBrowser() {

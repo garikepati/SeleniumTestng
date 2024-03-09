@@ -11,6 +11,7 @@ public class TestcaseLogin extends BaseTest
     @Test
     public void LoginTestCase() {
         System.out.println("Login to the application");
+
         driver.findElement(By.xpath("//div[@role='banner' and @class='h_container_sm' ]/div[2]/a")).click();
         driver.findElement(By.xpath("//button[contains(text(),'LOGIN')]")).click();
         String parentwindow = driver.getWindowHandle();
