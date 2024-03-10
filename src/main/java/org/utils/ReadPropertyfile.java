@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class ReadPropertyfile {
 
-    public String propertyFile(String name) {
+    public static String propertyFile(String name) {
         String value = null;
         Properties prop= new Properties();
         String filepath = System.getProperty("user.dir") + "/src/test/resources/config.properties";

@@ -14,17 +14,20 @@ import java.time.Duration;
 
 public class SeleniumUtils {
 
-    WebDriver driver;
-    WebDriverWait wait;
-    FluentWait fluentwait;
-    JavascriptExecutor js;
-    Actions actions;
+   public static WebDriver driver;
+  public static   WebDriverWait wait;
+   public static FluentWait fluentwait;
+   public static JavascriptExecutor js;
+    public static Actions actions;
 
+    public SeleniumUtils() {
+
+    }
     public SeleniumUtils(WebDriver driver) {
         this.driver = driver;
-        js= (JavascriptExecutor) driver;
-        fluentwait= new FluentWait<>(driver);
-        wait= new WebDriverWait(driver, Duration.ofSeconds(60));
+       this.js= (JavascriptExecutor) driver;
+       this.fluentwait= new FluentWait<>(driver);
+        this.wait= new WebDriverWait(driver, Duration.ofSeconds(60));
     }
     public WebElement Findelement(String xpath) {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
