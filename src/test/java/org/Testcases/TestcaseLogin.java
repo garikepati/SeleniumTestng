@@ -13,33 +13,18 @@ public class TestcaseLogin extends BaseTest
 {
     @Test
     public void LoginTestCase() {
-
-        System.out.println("Page factory is initialized");
-        loginPage.getLoginButton().click();
-        loginPage.getLoginButton1().click();
-        String parentwindow = driver.getWindowHandle();
-        Set<String> allwindows = driver.getWindowHandles();
-        for (String window : allwindows) {
-            if (!window.equals(parentwindow)){
-                driver.switchTo().window(window);
-            }
-        }
+        seleniumUtils.JsClick(loginPage.getLoginButton());
+        seleniumUtils.JsClick(loginPage.getLoginButton1());
+        seleniumUtils.WindowHandles();
         loginPage.getUsername().sendKeys(Excel.readExcel("Sheet1").get("1").get("username"));
     }
 
     @Test
     public void LaunchTestCase1() {
-        System.out.println("Login to the application");
-        loginPage.getLoginButton().click();
-        loginPage.getLoginButton1().click();
-        String parentwindow = driver.getWindowHandle();
-        Set<String> allwindows = driver.getWindowHandles();
-        for (String window : allwindows) {
-            if (!window.equals(parentwindow)){
-                driver.switchTo().window(window);
-            }
-        }
-        loginPage.getUsername().sendKeys(Excel.readExcel("Sheet1").get("1").get("username"));
+        seleniumUtils.JsClick(loginPage.getLoginButton());
+        seleniumUtils.JsClick(loginPage.getLoginButton1());
+        seleniumUtils.WindowHandles();
+        loginPage.getUsername().sendKeys(Excel.readExcel("Sheet1").get("2").get("username"));
     }
 
 

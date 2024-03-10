@@ -35,30 +35,28 @@ public class SeleniumUtils {
        return element;
     }
 
-    public void Fluentwaits(String xpath) {
+    public void Fluentwaits(WebElement element) {
 
         fluentwait.withTimeout(Duration.ofSeconds(60));
         fluentwait.pollingEvery(Duration.ofSeconds(5));
         fluentwait.ignoring(Throwable.class);
-        fluentwait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
+        fluentwait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void webdriverwaits(String xpath) {
+    public void webdriverwaits(WebElement element) {
        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-       wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
+       wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void click(String xpath) {
-        Findelement(xpath).click();
+    public void click(WebElement element) {
+        element.click();
     }
 
-    public void JsClick(String xpath) {
-        WebElement element = Findelement(xpath);
+    public void JsClick(WebElement element) {
         js.executeScript("arguments[0].click();", element);
     }
 
-    public void Actionclick(String xpath) {
-        WebElement element = Findelement(xpath);
+    public void Actionclick(WebElement element) {
         actions.moveToElement(element).click().build().perform();
     }
 
@@ -66,5 +64,13 @@ public class SeleniumUtils {
         Findelement(xpath).sendKeys(value);
     }
 
+    public void WindowHandles() {
+        String parentwindow = driver.getWindowHandle();
+        driver.getWindowHandles().forEach(window -> {
+            if (!window.equals(parentwindow)) {
+                driver.switchTo().window(window);
+            }
+        });
+    }
 
 }
