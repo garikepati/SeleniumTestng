@@ -25,8 +25,9 @@ public class BaseTest extends ReadPropertyfile {
    protected ReadExcel Excel = new ReadExcel();
   public static SeleniumUtils seleniumUtils;
    public static LoginPage loginPage;
-
-   PageFactory pageFactory;
+      PageFactory pageFactory;
+    protected static
+    ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
 
     @BeforeMethod(alwaysRun = true)
     public void InitializeBrowser() {
@@ -57,20 +58,23 @@ public class BaseTest extends ReadPropertyfile {
             driver= new EdgeDriver(service, options);
 
         }
-
-        driver.get(url);
-        seleniumUtils= new SeleniumUtils(driver);
-        loginPage= new LoginPage(driver);
+        threadLocalDriver.set(driver);
+        System.out.println("Before Test Thread ID: "+Thread.currentThread().getId());
+        getDriver().get(url);
+        seleniumUtils= new SeleniumUtils(getDriver());
+        loginPage= new LoginPage(getDriver());
 }
 
-public WebDriver getDriver() {
-    return driver;
-}
+    public static WebDriver getDriver(){
+        return threadLocalDriver.get();
+    }
 
 @AfterMethod(alwaysRun = true)
     public void tearDown()
     {
-        driver.quit();
+        getDriver().quit();
+        System.out.println("After Test Thread ID: "+Thread.currentThread().getId());
+        threadLocalDriver.remove();
     }
 }
 
